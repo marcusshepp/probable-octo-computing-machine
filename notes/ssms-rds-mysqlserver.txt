@@ -1,0 +1,55 @@
+Connection to RDS MySQL Server via SSMS for Local Development
+
+SSMS Connection Settings:
+
+Server Type: Database Engine
+
+Server name: database-1.cbewiggga505.us-east-1.rds.amazonaws.com,1433
+
+Authentication: SQL Server Authentication
+
+User name: admin
+- this is the default user name
+
+Password: redacted
+
+Encryption: Mandatory
+
+Trust Server Certificate: checked   
+
+
+Setting Up RDS MySQL Server:
+
+1. Go to the AWS Management Console and search for RDS.
+
+2. Click on "Databases" in the navigation pane.
+
+3. Click on "Create database".
+
+4. Select "Standard create" and click on "Create database".
+
+5. Fill in the database details:
+
+    - Engine: SQL Server Express Edition
+    - DB instance identifier: database-1
+    - Master username: admin
+    - Master password: redacted
+
+6. make the database publicly accessible
+
+7. click on "Create database"
+
+8. Security group settings:
+    - create a new security group
+
+9. click on "Create database"
+
+10. After db creation, go to the db, click on "Security groups" tab, click on "Edit inbound rules"
+    - add a new rule
+        - type: MSSQL
+        - protocol: TCP
+        - IP version: IPv4  
+        - port range: 1433
+        - source: my IP address
+
+

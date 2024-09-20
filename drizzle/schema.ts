@@ -1,10 +1,34 @@
 import {
-    pgTable,
-    serial,
+    int,
+    mysqlEnum,
+    mysqlTable,
+    uniqueIndex,
     varchar,
-} from 'drizzle-orm/pg-core';
+    serial,
+} from 'drizzle-orm/mysql-core';
 
-export const users = pgTable('users', {
+// declaring enum in database
+export const countries = mysqlTable(
+    'countries',
+    {
+        id: serial('id').primaryKey(),
+        name: varchar('name', { length: 256 }),
+    },
+    (countries) => ({
+        nameIndex: uniqueIndex('name_idx').on(
+            countries.name
+        ),
+    })
+);
+export const cities = mysqlTable('cities', {
     id: serial('id').primaryKey(),
-    name: varchar('name', { length: 255 }),
+    name: varchar('name', { length: 256 }),
+    countryId: int('country_id').references(
+        () => countries.id
+    ),
+    popularity: mysqlEnum('popularity', [
+        'unknown',
+        'known',
+        'popular',
+    ]),
 });
