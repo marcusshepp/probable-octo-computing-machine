@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 
-const foo = ["abc"];
 const pictures: string[] = [
   "https://utfs.io/f/ViWUst2KaHFKuSAOmTdo2p6sGYScZX1h4RlCU5dgf9kVtAji",
   "https://utfs.io/f/ViWUst2KaHFKBJtuOI9MG1BP0UvmQNbaVnXwp4Rdz5jIE2YS",
