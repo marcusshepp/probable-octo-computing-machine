@@ -1,0 +1,71 @@
+Connecting Drizzle ORM to RDS MySQL Server
+
+I'm using pnpm because it's really fast.
+
+1.  Install Drizzle ORM, drizzle-kit, and mysql2
+
+    ```bash
+    pnpm add drizzle-orm mysql2
+    pnpm add -D drizzle-kit
+    ```
+
+2.  Create a new file called drizzle.config.ts
+
+    ```bash
+    touch drizzle.config.ts
+    ```
+
+3.  Add the following code to drizzle.config.ts
+
+            ```typescript
+        import { defineConfig } from 'drizzle-kit';
+        import './.envConfig.ts';
+
+        export default defineConfig({
+            dialect: 'mysql', // "mysql" | "sqlite" | "postgresql"
+            schema: './drizzle/schema.ts',
+            out: './drizzle',
+            dbCredentials: {
+            host: process.env.PG_HOST!,
+            port: Number(process.env.PG_PORT),
+            user: process.env.PG_USER,
+            password: process.env.PG_PASSWORD,
+            database: process.env.PG_DB!,
+            ssl: {
+                rejectUnauthorized: false,
+            },
+        },
+
+    });
+
+        ```
+
+4.  create directory drizzle
+
+    ```bash
+    mkdir drizzle
+    ```
+
+5.  create schema.ts file
+
+    ```bash
+    touch drizzle/schema.ts
+    ```
+
+    6. put soem test code in schema.ts
+
+        ```typescript
+        import {
+            mysqlTable,
+            varchar,
+            int,
+            serial,
+        } from 'drizzle-orm/mysql-core';
+
+        export const users = mysqlTable('users', {
+            id: serial('id').primaryKey(),
+            name: varchar('name', {
+                length: 256,
+            }),
+        });
+        ```

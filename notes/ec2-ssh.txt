@@ -1,0 +1,24 @@
+connecting to ec2 instance
+
+create an ec2 instance on aws
+
+options: 
+create a new key pair
+download the key pair
+enable public ip
+enable ssh
+create security group that allows ssh access via my ip
+
+`ssh -i <path/to/key/pair.pem> ubuntu@<public-ip>`
+here ubuntu is the default user for ubuntu ec2 instances
+
+Here are the default users for different distros:
+CentOS – centos or ec2-user
+Debian – admin
+Fedora – fedora or ec2-user
+RHEL – ec2-user or root
+SUSE – ec2-user or root
+Ubuntu – ubuntu
+Oracle – ec2-user
+Bitnami – bitnami
+Rocky Linux – rocky
